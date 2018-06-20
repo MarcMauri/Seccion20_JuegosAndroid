@@ -23,23 +23,36 @@ public class Box2DScreen extends BaseScreen {
 
     private OrthographicCamera camera;
 
-    private Body playerBody;
+    private Body playerBody, sueloBody;
 
-    private Fixture playerFixture;
+    private Fixture playerFixture, sueloFixture;
 
     @Override
     public void show() {
         world = new World(new Vector2(0, -10), true);
         renderer = new Box2DDebugRenderer();
-        camera = new OrthographicCamera(32, 18);
+        camera = new OrthographicCamera(7.11f, 4);
+        camera.translate(0, 1);
 
-        BodyDef playerDef = createPlayerBodyDef();
-        playerBody = world.createBody(playerDef);
+        playerBody = world.createBody(createPlayerBodyDef());
+        sueloBody = world.createBody(createSueloBodyDef());
 
         PolygonShape playerShape = new PolygonShape();
-        playerShape.setAsBox(1, 1);
+        playerShape.setAsBox(0.5f, 0.5f);
         playerFixture = playerBody.createFixture(playerShape, 1);
         playerShape.dispose();
+
+        PolygonShape sueloShape = new PolygonShape();
+        sueloShape.setAsBox(500, 1);
+        sueloFixture = sueloBody.createFixture(sueloShape, 1);
+        sueloShape.dispose();
+    }
+
+    private BodyDef createSueloBodyDef() {
+        BodyDef def = new BodyDef();
+        def.position.set(0,-1);
+        def.type = BodyDef.BodyType.StaticBody;
+        return def;
     }
 
     private BodyDef createPlayerBodyDef() {
@@ -51,6 +64,7 @@ public class Box2DScreen extends BaseScreen {
 
     @Override
     public void dispose() {
+        playerBody.destroyFixture(playerFixture);
         world.destroyBody(playerBody);
         world.dispose();
         renderer.dispose();
