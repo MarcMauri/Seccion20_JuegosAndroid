@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+import es.marcmauri.actors.ActorJugador;
+
 public class MainGameScreen extends BaseScreen {
 
     public MainGameScreen(MainGame game) {
@@ -12,9 +14,15 @@ public class MainGameScreen extends BaseScreen {
 
     private Stage stage;
 
+    private ActorJugador jugador;
+
     @Override
     public void show() {
         stage = new Stage();
+        jugador = new ActorJugador();
+        stage.addActor(jugador);
+
+        jugador.setPosition(20, 100);
     }
 
     @Override
