@@ -48,7 +48,7 @@ public class Box2DScreen extends BaseScreen {
         sueloFixture = sueloBody.createFixture(sueloShape, 1);
         sueloShape.dispose();
 
-        pinchoFixture = createPinchoFixture(pinchoBody);
+        //pinchoFixture = createPinchoFixture(pinchoBody);
     }
 
     private BodyDef createPinchoBodyDef(float x) {
@@ -101,9 +101,17 @@ public class Box2DScreen extends BaseScreen {
     public void render(float delta) {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        if (Gdx.input.justTouched())
+            saltar();
+
         world.step(delta, 6, 2);
 
         camera.update();
         renderer.render(world, camera.combined);
+    }
+
+    private void saltar() {
+        Vector2 position = playerBody.getPosition();
+        playerBody.applyLinearImpulse(0, 6, position.x, position.y, true);
     }
 }
