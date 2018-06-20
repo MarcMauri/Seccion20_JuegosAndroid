@@ -1,7 +1,31 @@
 #Internal package file, do not edit.
-#Wed Jun 20 13:19:32 CEST 2018
-0.baseType=DIRECTORY
+#Wed Jun 20 16:00:42 CEST 2018
+2.base=/home/marc/Documents/android-projects/JumpDontDie/android/build/intermediates/assets/debug
+5.set=ASSET
+0.path=player2.png
+2.baseType=DIRECTORY
+3.base=/home/marc/Documents/android-projects/JumpDontDie/android/build/intermediates/assets/debug
+2.set=ASSET
+1.path=player.png
+4.base=/home/marc/Documents/android-projects/JumpDontDie/android/build/intermediates/assets/debug
+count=7
+5.baseType=DIRECTORY
+2.path=pincho.png
+5.base=/home/marc/Documents/android-projects/JumpDontDie/android/build/intermediates/assets/debug
+4.set=ASSET
+3.path=player3.png
+6.base=/home/marc/Documents/android-projects/JumpDontDie/android/build/intermediates/assets/debug
+3.baseType=DIRECTORY
+1.set=ASSET
+4.path=player1.png
+6.set=ASSET
+1.baseType=DIRECTORY
+6.baseType=DIRECTORY
+5.path=pinchos.png
 0.base=/home/marc/Documents/android-projects/JumpDontDie/android/build/intermediates/assets/debug
-0.path=badlogic.jpg
+0.baseType=DIRECTORY
+3.set=ASSET
+6.path=badlogic.jpg
+1.base=/home/marc/Documents/android-projects/JumpDontDie/android/build/intermediates/assets/debug
+4.baseType=DIRECTORY
 0.set=ASSET
-count=1
