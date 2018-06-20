@@ -1,7 +1,11 @@
 package es.marcmauri;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.Game;
 
-public class MainGame extends ApplicationAdapter {
-    //
+public class MainGame extends Game {
+
+    @Override
+    public void create() {
+        //
+    }
 }
