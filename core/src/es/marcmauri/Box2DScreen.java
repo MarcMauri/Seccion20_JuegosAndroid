@@ -4,7 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Box2DScreen extends BaseScreen {
@@ -19,15 +22,30 @@ public class Box2DScreen extends BaseScreen {
 
     private OrthographicCamera camera;
 
+    private Body playerBody;
+
+    private Fixture playerFixture;
+
     @Override
     public void show() {
         world = new World(new Vector2(0, -10), true);
         renderer = new Box2DDebugRenderer();
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+        BodyDef playerDef = createPlayerBodyDef();
+        playerBody = world.createBody(playerDef);
+    }
+
+    private BodyDef createPlayerBodyDef() {
+        BodyDef def = new BodyDef();
+        def.position.set(0,10);
+        def.type = BodyDef.BodyType.DynamicBody;
+        return def;
     }
 
     @Override
     public void dispose() {
+        world.destroyBody(playerBody);
         world.dispose();
         renderer.dispose();
     }
