@@ -12,7 +12,8 @@ public class MainGame extends ApplicationAdapter {
 
     @Override
     public void create() {
-        //
+        Procesador p = new Procesador();
+        Gdx.input.setInputProcessor(p);
     }
 
     @Override
@@ -26,13 +27,5 @@ public class MainGame extends ApplicationAdapter {
         // Primero es importante limpiar el buffer de la grafica
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glClearColor(1, 0, 0.5f, 1);
-
-        if (Gdx.input.justTouched()) {
-            System.out.println("Estas tocando la pantalla.");
-        }
-
-        if (Gdx.input.isKeyPressed(Input.Keys.BACK)) {
-            System.out.println("Woooah, back button");
-        }
     }
 }
