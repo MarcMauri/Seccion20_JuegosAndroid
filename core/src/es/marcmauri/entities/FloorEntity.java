@@ -17,8 +17,8 @@ public class FloorEntity extends Actor {
 
     private Texture floor, overfloor;
     private World world;
-    private Body body;
-    private Fixture fixture;
+    private Body body, leftBody;
+    private Fixture fixture, leftFixture;
 
     public FloorEntity(World world, Texture floor, Texture overfloor, float x, float width, float y) {
         this.world = world;
@@ -37,8 +37,17 @@ public class FloorEntity extends Actor {
         fixture.setUserData("floor");
         box.dispose();
 
+        BodyDef leftDef = new BodyDef();
+        leftDef.position.set(x, y - 0.55f);
+        leftBody = world.createBody(leftDef);
+        PolygonShape leftBox = new PolygonShape();
+        leftBox.setAsBox(0.02f, 0.45f);
+        leftFixture= leftBody.createFixture(leftBox, 1);
+        leftFixture.setUserData("spike"); // Para que se comporte como pincho
+        leftBox.dispose();
+
         setSize(width * Constants.PIXELS_IN_METER, Constants.PIXELS_IN_METER);
-        setPosition((x - width/2) * Constants.PIXELS_IN_METER, (y - 1) * Constants.PIXELS_IN_METER);
+        setPosition(x * Constants.PIXELS_IN_METER, (y - 1) * Constants.PIXELS_IN_METER);
     }
 
     @Override

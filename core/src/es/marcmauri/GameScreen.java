@@ -52,6 +52,7 @@ public class GameScreen extends BaseScreen {
 
                 if (areCollided(contact, "player", "spike")) {
                     player.setAlive(false);
+                    System.out.println("GAME OVER");
                 }
             }
 
@@ -81,6 +82,7 @@ public class GameScreen extends BaseScreen {
         player = new PlayerEntity(world, playerTexture, new Vector2(1.5f, 1.5f));
 
         floorList.add(new FloorEntity(world, floorTexture, overfloorTexture, 0, 1000, 1));
+        floorList.add(new FloorEntity(world, floorTexture, overfloorTexture, 12, 10, 2));
         spikeList.add(new SpikeEntity(world, spikeTexture, 6, 1));
 
         stage.addActor(player);
