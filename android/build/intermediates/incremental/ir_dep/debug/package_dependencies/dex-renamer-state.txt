@@ -1,0 +1,4 @@
+#Thu Jun 21 16:47:08 CEST 2018
+base.0=/home/marc/Documents/android-projects/JumpDontDie/android/build/intermediates/transforms/dexMerger/debug/11
+path.0=classes.dex
+renamed.0=classes.dex
