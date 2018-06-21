@@ -129,7 +129,7 @@ public class Box2DScreen extends BaseScreen {
 
     private BodyDef createJoeBodyDef() {
         BodyDef def = new BodyDef();
-        def.position.set(0,1);
+        def.position.set(0,0.5f);
         def.type = BodyDef.BodyType.DynamicBody;
         return def;
     }

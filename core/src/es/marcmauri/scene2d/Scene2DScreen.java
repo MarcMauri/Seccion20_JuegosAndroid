@@ -1,4 +1,4 @@
-package es.marcmauri;
+package es.marcmauri.scene2d;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
@@ -6,10 +6,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-import es.marcmauri.actors.ActorJugador;
-import es.marcmauri.actors.ActorPinchos;
+import es.marcmauri.BaseScreen;
+import es.marcmauri.MainGame;
 
-public class MainGameScreen extends BaseScreen {
+public class Scene2DScreen extends BaseScreen {
 
     private Stage stage;
 
@@ -20,7 +20,7 @@ public class MainGameScreen extends BaseScreen {
 
     private TextureRegion regionPinchos;
 
-    public MainGameScreen(MainGame game) {
+    public Scene2DScreen(MainGame game) {
         super(game);
         texturaJugador = new Texture("player.png");
         texturaPinchos = new Texture("pinchos.png");

@@ -1,4 +1,4 @@
-package es.marcmauri.actors;
+package es.marcmauri.scene2d;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
