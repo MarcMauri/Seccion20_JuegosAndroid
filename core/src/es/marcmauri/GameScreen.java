@@ -1,6 +1,8 @@
 package es.marcmauri;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
@@ -28,9 +30,16 @@ public class GameScreen extends BaseScreen {
     private List<FloorEntity> floorList = new ArrayList<FloorEntity>();
     private List<SpikeEntity> spikeList = new ArrayList<SpikeEntity>();
 
+    private Sound jumpSound, dieSound;
+    private Music bgMusic;
+
 
     public GameScreen(MainGame game) {
         super(game);
+        jumpSound = game.getManager().get("jump.ogg");
+        dieSound = game.getManager().get("die.ogg");
+        bgMusic = game.getManager().get("song.ogg");
+
         stage = new Stage(new FitViewport(640, 360));
         world = new World(new Vector2(0, -10), true);
 
@@ -45,14 +54,19 @@ public class GameScreen extends BaseScreen {
             public void beginContact(Contact contact) {
                 if (areCollided(contact, "player", "floor")) {
                     player.setJumping(false);
-                    if (Gdx.input.isTouched()) {
+                    if (Gdx.input.isTouched() && player.isAlive()) {
+                        jumpSound.play();
                         player.setMustJump(true);
                     }
                 }
 
                 if (areCollided(contact, "player", "spike")) {
-                    player.setAlive(false);
-                    System.out.println("GAME OVER");
+                    if (player.isAlive()) {
+                        player.setAlive(false);
+                        bgMusic.stop();
+                        dieSound.play();
+                        System.out.println("GAME OVER");
+                    }
                 }
             }
 
@@ -96,10 +110,14 @@ public class GameScreen extends BaseScreen {
         for (SpikeEntity spike : spikeList) {
             stage.addActor(spike);
         }
+
+        bgMusic.setVolume(0.75f);
+        bgMusic.play();
     }
 
     @Override
     public void hide() {
+        bgMusic.stop();
         player.detach();
         player.remove();
         for (FloorEntity floor : floorList) {
@@ -120,6 +138,11 @@ public class GameScreen extends BaseScreen {
         if (player.getX() > 150 && player.isAlive()) {
             // Movemos la camara
             stage.getCamera().translate(Constants.PLAYER_SPEED * delta * Constants.PIXELS_IN_METER, 0, 0);
+        }
+
+        if (Gdx.input.justTouched() && player.isAlive()) {
+            jumpSound.play();
+            player.setMustJump(true);
         }
 
         stage.act();
