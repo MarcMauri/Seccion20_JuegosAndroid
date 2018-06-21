@@ -36,9 +36,9 @@ public class GameScreen extends BaseScreen {
 
     public GameScreen(MainGame game) {
         super(game);
-        jumpSound = game.getManager().get("jump.ogg");
-        dieSound = game.getManager().get("die.ogg");
-        bgMusic = game.getManager().get("song.ogg");
+        jumpSound = game.getManager().get("audio/jump.ogg");
+        dieSound = game.getManager().get("audio/die.ogg");
+        bgMusic = game.getManager().get("audio/song.ogg");
 
         stage = new Stage(new FitViewport(640, 360));
         world = new World(new Vector2(0, -10), true);
