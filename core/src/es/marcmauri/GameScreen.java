@@ -83,7 +83,11 @@ public class GameScreen extends BaseScreen {
 
         floorList.add(new FloorEntity(world, floorTexture, overfloorTexture, 0, 1000, 1));
         floorList.add(new FloorEntity(world, floorTexture, overfloorTexture, 12, 10, 2));
+        floorList.add(new FloorEntity(world, floorTexture, overfloorTexture, 30, 10, 2));
         spikeList.add(new SpikeEntity(world, spikeTexture, 6, 1));
+        spikeList.add(new SpikeEntity(world, spikeTexture, 18, 2));
+        spikeList.add(new SpikeEntity(world, spikeTexture, 35, 2));
+        spikeList.add(new SpikeEntity(world, spikeTexture, 50, 1));
 
         stage.addActor(player);
         for (FloorEntity floor : floorList) {
@@ -112,6 +116,11 @@ public class GameScreen extends BaseScreen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0.4f, 0.5f, 0.8f, 1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+        if (player.getX() > 150 && player.isAlive()) {
+            // Movemos la camara
+            stage.getCamera().translate(Constants.PLAYER_SPEED * delta * Constants.PIXELS_IN_METER, 0, 0);
+        }
 
         stage.act();
         world.step(delta, 6, 2);

@@ -62,7 +62,7 @@ public class PlayerEntity extends Actor {
         // Hacer avanzar el jugador si esta vivo
         if (alive) {
             float speedY = body.getLinearVelocity().y;
-            body.setLinearVelocity(8f, speedY);
+            body.setLinearVelocity(Constants.PLAYER_SPEED, speedY);
         }
 
         if (jumping) {
